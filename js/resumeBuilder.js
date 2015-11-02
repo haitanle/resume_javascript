@@ -1,8 +1,9 @@
 var formattedName = HTMLheaderName.replace("%data%", "Tan Le");
-$("#header").append(formattedName);
+
 
 var formattedRole = HTMLheaderRole.replace("%data%", "Software Engineer");
-$("#header").append(formattedRole);
+$("#header").prepend(formattedRole);
+$("#header").prepend(formattedName);
 
 var phone = HTMLmobile.replace("%data%", "704-451-2956"); 
 $("#header").append(phone); 
@@ -13,5 +14,15 @@ $("#header").append(email);
 var github = HTMLgithub.replace("%data%", "haitanle");
 $("#header").append(github); 
 
-var message = HTMLwelcomeMsg.replace("%data%", "Message goes here"); 
+// var location = HTMLlocation.replace("%data%", "Charlotte NC"); 
+// $("#header").append(location)
+
+var message = HTMLwelcomeMsg.replace("%data%", "I am interested in all things tech."); 
 $("#header").append(message); 
+
+
+var skills = HTMLskills.replace("%data%", "HTML, CSS, javaScript"); 
+
+
+var workEmployee = HTMLworkEmployer.replace("%data%", "Premier Inc"); 
+$("#workExperience").append(workEmployee); 
