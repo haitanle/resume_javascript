@@ -8,7 +8,7 @@ var bio = {
 	},
 	"pic" : "images/fry.jpg",
 	"skills": ["Data Science","UI","Java"], 
-	"message": "Welcome to my Premier's personal page", 
+	"message": "I am interested in all things tech.", 
 };
 
 
@@ -24,8 +24,8 @@ bio.display = function() {
 	$('#topContacts').append(HTMLformattedPhone);
 	$('#topContacts').append(HTMLemail.replace("%data%", bio.contact.email));
 	$('#topContacts').append(HTMLlocation.replace("%data%", bio.contact.location));
-	$('#topContacts').append(HTMLbioPic.replace("%data%", bio.pic));
-	$('#topContacts').append(HTMLwelcomeMsg.replace("%data%", bio.message));
+	$('#bioPic').append(HTMLbioPic.replace("%data%", bio.pic));
+	$('#bioPic').append(HTMLwelcomeMsg.replace("%data%", bio.message));
 
 
 	if (bio.skills.length > 0 ){
