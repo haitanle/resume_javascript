@@ -7,8 +7,10 @@ var bio = {
 		"location": "Charlotte, NC", 
 	},
 	"pic" : "images/fry.jpg",
-	"skills": ["Data Science","UI","Java"], 
+	"skills": ["Unix/Bash", "Backend Data Implementation", "Hadoop", "SQL", "HTML,CSS", "JavaScript", "Python"], 
 	"message": "I am interested in all things tech.", 
+	"github": "haitanle",
+	"twitter": "@HaiTanLe"
 };
 
 
@@ -23,16 +25,17 @@ bio.display = function() {
 
 	$('#topContacts').append(HTMLformattedPhone);
 	$('#topContacts').append(HTMLemail.replace("%data%", bio.contact.email));
+	$('#topContacts').append(HTMLgithub.replace("%data%", bio.github));
+	$('#topContacts').append(HTMLtwitter.replace("%data%", bio.twitter));
 	$('#topContacts').append(HTMLlocation.replace("%data%", bio.contact.location));
 	$('#bioPic').append(HTMLbioPic.replace("%data%", bio.pic));
 	$('#bioPic').append(HTMLwelcomeMsg.replace("%data%", bio.message));
 
-
 	if (bio.skills.length > 0 ){
 		$('#header').append(HTMLskillsStart);
-		$('#skills').append(HTMLskills.replace('%data%', bio.skills[0]));
-		$('#skills').append(HTMLskills.replace('%data%', bio.skills[1]));
-		$('#skills').append(HTMLskills.replace('%data%', bio.skills[2]));
+		for (i = 0; i < bio.skills.length; i++){
+			$('#skills').append(HTMLskills.replace('%data%', bio.skills[i]));
+		}
 	}
 } 
 
@@ -70,7 +73,17 @@ education.display = function() {
 
 		$('.education-entry:last').append(formattedNameAndDegree); 
 		$('.education-entry:last').append(HTMLschoolDates.replace('%data%', education.schools[school].dates));
-		// $('.education-entry:last').append(HTMLschoolLocation.replace('%data%', education.schools[school].location)); 
+		$('.education-entry:last').append(HTMLschoolLocation.replace('%data%', education.schools[school].location)); 
+	}
+	for (course in education.onlineCourses){
+		$('#education').append(HTMLonlineClasses);
+
+		var courseTitle = HTMLonlineTitle.replace('%data%', education.onlineCourses[course].title);
+		var onlineSchool = HTMLonlineSchool.replace('%data%', education.onlineCourses[course].school); 
+		
+		$('.education-entry:last').append(courseTitle); 
+		$('.education-entry:last').append(onlineSchool); 
+
 	}
 }
 
