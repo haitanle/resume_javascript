@@ -95,8 +95,26 @@ var work = [
 		"role": "Software Developer",
 		"location": "Charlotte, NC",
 		"description": "Premier is a healthcare technology company that provides and builds solutions for healthcare providers, foucsing on improving the health of communities, progress the performance of healthcare organizations, and reducing costs."
+		},
+		{
+			"employer": "NC Gives",
+			"date": "Summer 2012",
+			"role": "Intern",
+			"location": "Raleigh, NC",
+			"description": "NC Gives is a non-profit organization that promotes and highlights philanthropic giving in the minority groups."
 		}
 ]
+
+var locationizer = function(workObject) {
+	var location = []; 
+	for (work in workObject) {
+		location.push(workObject[work].location); 
+	}
+	return location; 
+}
+
+locationizer(work);
+
 
 var displayWork = function () {
 
