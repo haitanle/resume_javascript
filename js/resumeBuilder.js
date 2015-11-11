@@ -90,11 +90,12 @@ education.display = function() {
 education.display(); 
 
 var work = [
-		{"employer": "Premier Inc",
-		"date": "January 2015 - present",
-		"role": "Software Developer",
-		"location": "Charlotte, NC",
-		"description": "Premier is a healthcare technology company that provides and builds solutions for healthcare providers, foucsing on improving the health of communities, progress the performance of healthcare organizations, and reducing costs."
+		{	
+			"employer": "Premier Inc",
+			"date": "January 2015 - present",
+			"role": "Software Developer",
+			"location": "Charlotte, NC",
+			"description": "Premier is a healthcare technology company that provides and builds solutions for healthcare providers, foucsing on improving the health of communities, progress the performance of healthcare organizations, and reducing costs."
 		},
 		{
 			"employer": "NC Gives",
@@ -102,36 +103,55 @@ var work = [
 			"role": "Intern",
 			"location": "Raleigh, NC",
 			"description": "NC Gives is a non-profit organization that promotes and highlights philanthropic giving in the minority groups."
+		},
+		{
+			"employer": "UNC-Chapel Hill",
+			"date": "January 2011-June 2011",
+			"role": "Student",
+			"location": "Chapel Hill, NC",
+			"description": "Analyze problems of validity and reliability and index contruction for research."
+		},
+		{
+			"employer": "Family Theater Production",
+			"date" : "July 2012-December 2012",
+			"role" : "Film Editor Intern",
+			"location": "Los Angeles, CA",
+			"description": "Family Theater Production is a Catholic Film company founded by Holy Cross Relgious order."	
 		}
-]
+];
 
-var locationizer = function(workObject) {
+work.displayWork = function () {
+
+	for (var i = 0; i<work.length; i++) {
+
+		console.log(work[i].employer);
+
+		$('#workExperience').append(HTMLworkStart);
+		var formattedEmployer = HTMLworkEmployer.replace('%data%', work[i].employer);
+		var formattedRole = HTMLworkTitle.replace('%data%', work[i].role);
+		var formattedEmployerAndRole = formattedEmployer+formattedRole; 
+
+		$('.work-entry:last').append(formattedEmployer);
+		$('.work-entry:last').append(HTMLworkDates.replace('%data%', work[i].date));
+		$('.work-entry:last').append(HTMLworkLocation.replace('%data%', work[i].location));
+		$('.work-entry:last').append(HTMLworkDescription.replace('%data%', work[i].description));
+	}
+}
+
+work.displayWork();
+
+
+var locationizer = function(_work) {
+	var work = _work; 
 	var location = []; 
-	for (work in workObject) {
-		location.push(workObject[work].location); 
+	for (employer in work) {
+		location.push(work[employer].location); 
+		console.log("work location: " + work[employer].location);
 	}
 	return location; 
 }
 
 locationizer(work);
-
-
-var displayWork = function () {
-
-for (job in work) {
-	$('#workExperience').append(HTMLworkStart);
-	var formattedEmployer = HTMLworkEmployer.replace('%data%', work[job].employer);
-	var formattedRole = HTMLworkTitle.replace('%data%', work[job].role);
-	var formattedEmployerAndRole = formattedEmployer+formattedRole; 
-
-	$('.work-entry:last').append(formattedEmployerAndRole);
-	$('.work-entry:last').append(HTMLworkDates.replace('%data%', work[job].date));
-	$('.work-entry:last').append(HTMLworkLocation.replace('%data%', work[job].location));
-	$('.work-entry:last').append(HTMLworkDescription.replace('%data%', work[job].description));
-	}
-}
-
-displayWork();
 
 
 var projects = {
@@ -140,15 +160,16 @@ var projects = {
 		"manager": "Tom Wiley", 
 		"role": "Software Developer UI", 
 		"dates": "January 2015-June 2015", 
-		"description": "A single-page web application that allows grouping of diverse demographics."
-	}
-	,
+		"description": "A single-page web application that allows grouping of diverse demographics.",
+		"image": "images/project.gif"
+	},
 	{
 		"name": "Community Health Needs Assessment (CHNA)", 
 		"manager": "Tom Wiley", 
 		"role": "Full Stack Software Engineer", 
 		"dates": "June 2015-Present", 
-		"description": "A web appication that presents CHNA data for health organizations."
+		"description": "A web appication that presents CHNA data for health organizations.",
+		"image": "images/project.gif"
 	}
 	]
 }
@@ -163,6 +184,10 @@ projects.display = function() {
 		$('.project-entry:last').append(formattedTitleAndRole); 
 		$('.project-entry:last').append(HTMLprojectDates.replace('%data%', projects.PCE[project].dates)); 
 		$('.project-entry:last').append(HTMLprojectDescription.replace('%data%', projects.PCE[project].description)); 
+
+		if (projects.PCE[project].image.length > 0){
+			$('.project-entry:last').append(HTMLprojectImage.replace('%data%', projects.PCE[project].image)); 
+		}
 	}
 }
 
@@ -182,4 +207,4 @@ function inName(_name) {
 	return name[0]+' '+name[1]; 
 }
 
-// initializeMap(); 
+$("#mapDiv").append(googleMap);
